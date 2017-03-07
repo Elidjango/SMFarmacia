@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* css document */
+
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+* {
+ 	font-family: 'Ubuntu', sans-serif;
+}
+
+.form-register {
+    width: 90%;
+    max-width: 450px;
+    margin: auto;
+    background: white;
+    border-radius: 7px;
+}
+
+.form-titulo {
+    background: #a01818;
+    color: #f3f3f3;
+    padding: 15px;
+    text-align: center;
+    font-weight: 95;
+    font-size: 25px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom: 5px solid #417690;
+}
+
+#contenedor {
+    margin: 24px;
+    width: 50%;
+    max-width: 450px;
+    background: #f3f3f3;
+    padding: 10px;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: rgba(0,0,0,0.5);
+}
+
+input {
+    display: block;
+    padding: 5px;
+    width: 100%;
+    margin: 25px 0;
+    font-size: 15px;
+}
+
+input[type="submit"] {
+    background: #a01818;
+    color: #f3f3f3;
+    margin: auto;
+    padding: 15px 35px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+input[type="submit"]:active {
+    transform: scale(1.05);
+}
+
+@media (max-width:768px){
+    form {
+        width: 75%;
+    }
+}
+
+@media (max-width:480px){
+    form {
+        width: 95%;
+    }
+}

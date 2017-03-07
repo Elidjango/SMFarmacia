@@ -1,0 +1,85 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-image: url(i1.jpg);
+	background-size: 100vw 100vh;
+	display: flex;
+}
+
+.contenedor {
+	background: rgba(0,0,0,0.5);
+}
+
+img {
+	position: absolute;
+    margin: auto 0;
+}
+
+.ajustes {
+	display: block;
+}
+
+.atras {
+	width: 55px;
+}
+
+.atras a {
+	text-decoration: none;
+}
+
+h1 {
+	cursor: pointer;
+}
+
+.atras h1 {
+	padding: 4px 10px;
+	background: rgba(0,0,0,0.5);
+	color: #eee;
+	text-shadow: 1px 1px #888,
+	2px 2px #888,
+	3px 3px #888,
+	4px 4px #888,
+	5px 5px #888;
+	font-size: 45px;
+}
+
+.atras h1:active {
+	transform: scale(0.9);
+}
+
+.atras h1:hover {
+	background: rgba(115, 112, 112, 0.5);
+	
+}
+
+.imprimir {
+	width: 55px;
+}
+
+.imprimir a {
+	text-decoration: none;
+}
+
+.imprimir h1 {
+	padding: 4px 1px;
+	background: rgba(0,0,0,0.5);
+	color: #eee;
+	text-shadow: 1px 1px #888,
+	2px 2px #888,
+	3px 3px #888,
+	4px 4px #888,
+	5px 5px #888;
+	font-size: 35px;
+}
+
+.imprimir h1:active {
+	transform: scale(0.9);
+}
+
+.imprimir h1:hover {
+	background: rgba(115, 112, 112, 0.5);
+	
+}

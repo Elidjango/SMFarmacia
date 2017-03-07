@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="shortcut icon" href="/static/img/logoSMF.ico">
+	<link rel="stylesheet" href="/static/css/inicio.css">
+	<link rel="stylesheet" href="/static/css/fontello.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/fondo.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/fuente.css">
+	<link rel="stylesheet" href="/static/css/rg_pacientes.css">
+	<title>Pacientes</title>
+</head>
+<body>
+	<header>
+	{% block usertools %}
+		<input type="checkbox" id="btn-menu">
+		<label for="btn-menu" class="icon-list-bullet"></label>
+		<nav class="menu animated bounceInDown">
+			<ul>
+				<li><a href="/home/">Inicio<span class="icon-home"></span></a></li>
+               
+        		{% if user.is_superuser %}
+                <li class="submenu"><a href="#">Registros<span class="icon-registro"></span></a>
+               	    <ul class="m1">
+						<li><a href="/pacientes/">Pacientes</a></li>
+						<li><a href="/medicamentos/">Medicamentos</a></li>
+						<li><a href="/servicios/">Servicios</a></li>
+						<li><a href="#">Instituciones</a></li>
+					</ul>
+                </li>
+                {% endif %}
+                <li class="submenu"><a href="#">Procesos<span class="icon-proceso"></span></a>
+                    <ul class="m2">
+						<li><a href="#">Inventario</a></li>
+						<li><a href="#">Despacho</a></li>
+						<li><a href="#">Desincorporacion</a></li>
+						<li><a href="#">Donaciones</a></li>
+						<li><a href="#">Intercambios</a></li>
+					</ul>
+                </li>
+				<li class="submenu"><a href="#">Consultas<span class="icon-consultas"></span></a>
+				    <ul class="m3">
+						<li><a href="/mtr_pacientes/">Pacientes</a></li>
+						<li><a href="/mtr_medicamentos/">Medicamentos</a></li>
+						<li><a href="#">Servicios</a></li>
+						<li><a href="#">Archivos</a></li>
+						<li><a href="#">Instituciones</a></li>
+					</ul>
+				</li>
+				<li class="submenu"><a href="#">Reportes<span class="icon-reportes"></span></a>
+				    <ul class="m4">
+						<li><a href="/reporte_medicamentos_pdf/" target="_blanck">Medicamentos</a></li>
+						<li><a href="/reporte_pacientes_pdf/" target="_blanck">Pacientes</a></li>
+						{% if user.is_superuser %}
+						<li><a href="#" target="_blanck">Veremos...</a></li>
+						{% endif %}
+						<li><a href="/change_views/" target="_blanck">Solicitud.DAH</a></li>
+						<li><a href="#" target="_blanck">Inventarios</a></li>
+						<li><a href="#" target="_blanck">Salidas</a></li>
+						<li><a href="#" target="_blanck">Donaciones</a></li>
+						<li><a href="#" target="_blanck">Intercambios</a></li>
+					</ul>
+				</li>
+				<li class="submenu"><a href="#">Ayuda<span class="icon-ayuda"></span></a>
+				    <ul class="m5">
+				    {% if user.is_superuser %}
+						<li><a href="/signup/">Nuevos Usuarios</a></li>
+					{% endif %}	
+						<li><a href="#">Manual de Usuarios</a></li>
+					</ul>
+				</li>
+				<li><a href="/logout/">Logout<span class="icon-logout"></span></a></li>
+			</ul>
+		</nav>
+	{% endblock %}	
+	</header>
+	<div class="contenido">
+	<br>
+   	{% block content %}			
+		<form class="form-register" method="POST">{% csrf_token %}
+			<h1 class="form-titulo">REGISTRAR SERVICIO</h1>
+			<div class="contenedor-input">
+				<input maxlength="10" type="num" id="id_codigo" name="codigo" placeholder="Codigo" class="input-100" required>
+				<input maxlength="50" type="text" id="id_nombre_serv" name="nombre_servi" placeholder="Nombre De Servicio" class="input-48" required>
+            	<input maxlength="10" type="text" id="id_tipo" name="tipo" placeholder="Tipo De Servicio" class="input-48" required>
+
+				<input type="num" id="id_extencion_tlf" name="extencion_tlf" placeholder="Extención Telefonica" class="input-48" required>
+				<input type="Text" id="id_asistente_serv" name="asistente_serv" placeholder="Asistente Del Servicio" class="input-48" required>
+            	
+            	<input type="submit" onclick='alert("guardado exitosamente")' value="Registrar" class="input-100">
+	        </div>
+	    </form>
+	{% endblock %}    
+    </div>
+</body>
+</html>

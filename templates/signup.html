@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="/static/img/logoSMF.ico">
+    <link rel="stylesheet" href="/static/css/signup.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/fondo.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/fuente.css">
+    <script src="js/validar.js"></script>
+    <title>farma/Segnup</title>
+</head>
+<body>
+	{% block content %}   
+    <form class="form-register" action="{% url 'signup' %}" method="post" onsubmit="return validar();">
+    {% csrf_token %}   
+        <h2 class="form-titulo animated zoomInDown">REGISTRAR NUEVO USUARIO</h2>
+        <div class="contenedor-input animated flipInX">
+            <input maxlength="30" type="text" id="id_first_name" name="first_name" placeholder="Nombre" class="input-48" required>
+            <input maxlength="30" type="text" id="id_last_name" name="last_name" placeholder="Apellido" class="input-48" required>
+            <input maxlength="254" type="email" id="id_email" name="email" placeholder="Ejemplo@email.com" class="input-100" required>
+            <input maxlength="30" type="text" id="id_username" name="username" placeholder="Usuario" class="input-48" required>
+            <input maxlength="20" type="password" id="id_password" name="password" placeholder="Contraseña" class="input-48" required>
+            <input type="submit" value="Registrar" onclick='alert("guardado exitosamente")' class="btn-enviar">
+            <p class="form-link animated rubberBand">¿Ya tienes una cuenta? <a href="/">|Ingresa Aqui|</a><a href="/home/">          |Volver|</a></p>
+        </div>
+    </form>
+    {% if form.errors %}<p>{{ form.errors }}</p>{% endif %}
+    {% endblock %}
+</body>
+</html>

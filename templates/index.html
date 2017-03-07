@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="shortcut icon" href="/static/img/logoSMF.ico">
+	<link rel="stylesheet" type="text/css" href="/static/css/fontello.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+	<link rel="stylesheet" href="/static/css/fondo.css">
+	<link rel="stylesheet" href="/static/css/login.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/animate.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script src="/static/js/jquery.flexslider.js"></script>
+	<script type="text/javascript" charset="utf-8">
+	$(window).load(function() {
+    $('.flexslider').flexslider({
+    		touch: true,
+    		pauseOnAction: false,
+    		pauseOnHover: false,
+    	});
+  	});
+    function nobackbutton(){
+        window.location.hash="no-back-button";
+        window.location.hash="Again-No-back-button" //chrome
+        window.onhashchange=function(){window.location.hash="no-back-button";}
+    }    
+	</script>
+	<title>S.I.S.M.E.D.F.A.R</title>
+</head>
+<body onload="nobackbutton();">
+	<header>
+	    <img style="margin-left: -1000; width: 90px; height: 45px; border: 1px solid #a01818;" src="/static/img/logoSMF.png">
+		<input type="checkbox" id="btn-menu">
+		<label for="btn-menu" class="icon-list-bullet"></label>
+		<nav class="menu animated bounceInDown">
+			<ul>
+				<li><a href="/">Inicio<span class="icon-home"></span></a></li>
+				<li><a href="/medicinas_habiles/">Medicamentos<span class="icon-consultas"></span></a></li>
+                <li><a href="/mision/">Misión<span class="icon-mision"></span></a></li>
+				<li><a href="/vision/">Visión<span class="icon-vision"></span></a></li>
+				<li><a href="/quienes_somos/">¿Quienes Somos?<span class="icon-quienes-somos"></span></a></li>
+			</ul>
+		</nav>
+	</header>
+	<div class="mensaje animated flipInX">
+		<br><br>
+		<h1 class="animated bounceInDown" id="mensaje1">BIENVENIDOS</h1>
+		<p class="animated bounceInDown" id="mensaje2">sistema de farmacia del estado portuguesa</p>
+	</div>
+	</div>
+	<div class="flexslider animated flipInX">
+		<ul class="slides">
+			<li>
+				<img src="/static/img/i1.jpg" alt="">
+				<section class="flex-caption">
+				</section>
+			</li>
+			<li>
+				<img src="/static/img/i2.jpg" alt="">
+				<section class="flex-caption">
+				</section>
+			</li>
+			<li>
+				<img src="/static/img/i3.jpg" alt="">
+				<section class="flex-caption">
+				</section>
+			</li>
+		</ul>
+	</div>   
+   	{% block content %}	
+    <form id="contenedor" class="form-register" method="post" action="{% url 'django.contrib.auth.views.login' %}">
+    	{% csrf_token %}
+        <h3 class="form-titulo">INICIAR SESIÓN</h3>
+        <input id="id_username" type="text" name="username" placeholder="Usuario" required="El campo usuario es obligatorio" autocomplete="off">
+        <input id="id_password" type="password" name="password" placeholder="Contraseña" required="El campo contraseña es obligatorio" autocomplete="off">
+        <input type="submit" value="Ingresar">
+        <input type="hidden" name="next" value="{{ next }}">
+        {% if form.errors %}
+        <p style="font-size: 14px; font-weight: 700; display: block; padding: 10px 12px; margin: 0 0 10px 0; margin-top: 4px; color: #ba2121; border: 1px solid #ba2121; border-radius: 4px; background-color: #fff; background-position: 5px 12px;">Por favor, ingrese el nombre de usuario y la clave correctos para obtener cuenta de personal. Observe que ambos campos pueden ser sensibles a mayúsculas.</p>
+        {% endif %}
+    </form>
+	{% endblock %}
+	<div class="mapa" style="margin-left: 532px; margin-top: -307px; background: #444; padding: 10px; width: 400px; height: 300px;">
+		<center><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2482.1285986429343!2d-69.73431761790476!3d9.051590803545881!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x295255319a3e7247!2sHospital+Dr.+Miguel+Oraa!5e0!3m2!1ses-419!2sve!4v1486507554852" width="400" height="300" frameborder="2px" style="border:2px" allowfullscreen></iframe></center>
+	</div>
+    <footer class="subcontenedor_footer">
+		<div class="contenedor_footer">
+			<p class="copy"> | Programadores U.P.T.P "JJ Montilla" &copy; 2017-2018 |</p>
+			<div class="sociales">
+				<a href="#" target="_blanck" ><img src="/static/img/facebook.png"></a>
+				<a href="#" target="_blanck" ><img src="/static/img/instagram.png"></a>
+				<a href="#" target="_blanck" ><img src="/static/img/twitter.png"></a>
+				<a href="#" target="_blanck" ><img src="/static/img/google-plus.png"></a>
+			</div>
+		</div>
+	</footer>
+	<script src="/static/js/menu.js"></script>
+</body>
+</html>

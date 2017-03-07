@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="/static/img/logoSMF.ico">
+    <link rel="stylesheet" type="text/css" href="/static/css/mtr.css">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/fondo.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/fuente.css">
+    <link rel="stylesheet" href="/static/css/fontello.css">
+    <title>S.I.S.M.E.D.F.A.R</title>
+</head>
+<body>
+        <form method="GET" action="" >
+            <div class="buscar">
+            <input class="form-control" type="text"  name='q' placeholder='Codigo ó Nombre' value='{{ request.GET.q }}' autocomplete="off">
+            <input class="btn18-dange" type="submit" value="Buscar">
+           
+                <div class="atras">
+                    <a href="/home/"><h1><</h1></a>
+                </div>
+                <div class="imprimir">
+                    <a onclick="javascript:window.print()"><h1 class="icon-reportes"></h1></a>
+                </div>
+           
+            </div>
+            <table class="tabla" border="2" style="width: 90%;">        
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-0">
+                    </div>
+                    <div class="form-group">
+                    </div>
+                </div>
+            </div>
+            <thead>
+                <td class="cabecera"><h6><label>Codigo</label></h6></td>
+                <td class="cabecera"><h6><label>Nombre Del Medicamento</label></h6></td>
+                <td class="cabecera"><h6><label>N° Lote</labe></h6></td>
+                <td class="cabecera"><h6><label>Fecha De Elavoración</label></h6></td>
+                <td class="cabecera"><h6><label>Fecha De Vencimiento</label></h6></td>
+                <td class="cabecera"><h6><label>Tipo</label></h6></td>
+                <td class="cabecera"><h6><label>Cantidad</label></h6></td>
+                {% if user.is_superuser %}<td class="cabecera"><h6><label>Eliminar</label></h6></td>{% endif %}
+            </thead>
+            <tbody>
+                {% if object_list %}       
+                {% for medicamentos in object_list %}
+                <tr>
+                    <td class="datos">{% if user.is_superuser %}<a href="{% url "editar_medicamentos" medicamentos.id %}">{% endif %}<h6>{{ medicamentos.codigo }}</h6></a></td>
+                    <td class="datos"><h6>{{ medicamentos.nombre_med }}</h6></td>
+                    <td class="datos"><h6>{{ medicamentos.numero_lote }}</h6></td>
+                    <td class="datos"><h6>{{ medicamentos.fecha_elavorado }}</h6></td>
+                    <td class="datos"><h6>{{ medicamentos.fecha_vencimiento }}</h6></td>
+                    <td class="datos"><h6>{{ medicamentos.tipo }}</h6></td>
+                    <td class="datos"><h6>{{ medicamentos.cantidad }}</h6></td>
+                    {% if user.is_superuser %}<td class="datos"><a href="{% url "eliminar_medicamentos" medicamentos.id %}"><h6><img class="borrar" src="/static/img/eliminar.png"></h6></a></td>{% endif %}
+                </tr>
+                {% endfor %}
+                {%  else  %}
+                <h1>Medicamento no Encontrada</h1>
+                {% endif %}
+                </tbody>
+            </table>
+            </thead>
+    <div class="pager" style="margin-top: 20px;">
+    <samp class="current">
+    Pagina {{ object_list.number }}/{{object_list.paginator.num_pages }}
+    </samp>
+    <br>
+    <li>
+        {% if object_list.has_previous %}
+        <a href="?page={{object_list.previous_page_number}}">Anterior</a>
+        {% endif %}
+    </li>
+    <li>
+        {% if object_list.has_next %}
+        <a href="?page={{object_list.next_page_number}}">Siguiente</a>
+        {% endif %}  
+    </li>  
+    </div>
+    </form>
+</body>
+</html>
+    

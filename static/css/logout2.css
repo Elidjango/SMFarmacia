@@ -1,0 +1,39 @@
+*{
+	margin: 0; 
+}
+
+body {
+    overflow-x: hidden;
+}
+
+a {
+	text-decoration: none;
+	background: #a01818;
+    color: #f3f3f3;
+    padding: 15px 35px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.contenedor {
+	height: 50px;
+	background: #a01818;
+	color: #f3f3f3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.subcontenedor {
+	width: 96%;
+	height: 200px;
+	margin: 23px auto;
+	background: rgba(57, 55, 55, 0.7);
+	border-radius: 2px;
+}
+
+#mensaje {
+	text-align: center;
+	font-size: 2em;
+	color: #dedede;
+}

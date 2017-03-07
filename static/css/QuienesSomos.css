@@ -1,0 +1,45 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body {
+    background: #dedede;
+}
+
+.contenido {
+	width: 96%;
+	height: 450px;
+	margin: 23px auto;
+	background: rgba(57, 55, 55, 0.7);
+	border-radius: 2px;
+}
+
+#text {
+	text-align: center;
+	font-size: 2em;
+	color: #dedede;
+}
+
+#subtext {
+	text-align: center;
+	color: #dedede;
+	margin-top:20px;
+	font-size: 1.5em;
+}
+
+input[type="submit"] {
+    background: crimson;
+    color: #f3f3f3;
+    padding: 10px 40px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+input[type="submit"]:hover {
+    background: #dc0d34;
+}
+
+input[type="submit"]:active {
+    transform: scale(1.05);
+}
