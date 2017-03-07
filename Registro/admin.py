@@ -19,7 +19,7 @@ class AdminMedicamentos(admin.ModelAdmin):
 admin.site.register(medicamentos, AdminMedicamentos)
 
 class AdminServicios(admin.ModelAdmin):
-	list_display = ['__str__','tipo','extencion_tlf','asistente_serv',
+	list_display = ['__str__','tipo2','extencion_tlf','asistente_serv',
 	'tiempo_registro_servicios','actualizado_servicios']
 	class Meta:
 		model = servicios

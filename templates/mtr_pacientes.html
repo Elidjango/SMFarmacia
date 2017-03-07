@@ -47,7 +47,7 @@
                 {% if object_list %}       
                 {% for pacientes in object_list %}
                 <tr>
-                    <td class="datos">{% if user.is_superuser %}<a href="{% url "editar_pacientes" pacientes.id %}">{% endif %}<h6>{{ pacientes.cedula }}</h6></a></td>
+                    <td class="datos">{% if user.is_superuser %}<a href="#">{% endif %}<h6>{{ pacientes.cedula }}</h6></a></td>
                     <td class="datos"><h6>{{ pacientes.nombre_paci }}</h6></td>
                     <td class="datos"><h6>{{ pacientes.apellido_paci }}</h6></td>
                     <td class="datos"><h6>{{ pacientes.cod_movil }}-{{ pacientes.movil }}</h6></td>

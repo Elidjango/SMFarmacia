@@ -16,12 +16,14 @@ from django.http.response import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.views.generic import TemplateView
 from django.views.generic import ListView 
 from django.views.generic import UpdateView
 from django.views.generic import DeleteView
 from django.db.models import Q
 from django.views.generic import DetailView
 from django.core.urlresolvers import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
 #paginacion de django#
 from django.core.paginator import Paginator,EmptyPage,InvalidPage,PageNotAnInteger
 
@@ -114,7 +116,7 @@ class UpdatePaciView(UpdateView):
 
 @login_required()
 def medicamento(request):
-	form = MediForm(request.GET or None)
+	form = MediForm(request.POST or None)
 
 	Context={
 
@@ -123,7 +125,7 @@ def medicamento(request):
 
 	if form.is_valid():
 		form_data = form.cleaned_data
-		codigo = form_data.get("codigo")
+		codigo_med = form_data.get("codigo_med")
 		nombre_med = form_data.get("nombre_med")
 		numero_lote = form_data.get("numero_lote")
 		fecha_elavorado = form_data.get("fecha_elavorado")
@@ -132,7 +134,7 @@ def medicamento(request):
 		cantidad = form_data.get("cantidad")
 		precio = form_data.get("precio")
 
-		obj = medicamentos.objects.create(codigo=codigo, nombre_med=nombre_med,
+		obj = medicamentos.objects.create(codigo_med=codigo_med, nombre_med=nombre_med,
 			numero_lote=numero_lote, fecha_elavorado=fecha_elavorado, fecha_vencimiento=fecha_vencimiento, 
 			tipo=tipo, cantidad=cantidad,precio=precio)
 	else:
@@ -163,7 +165,7 @@ def mostrar_medicamentos(request):
 	
 	contexto = {
 	'object_list':queryset,
-	'codigo': 'List',
+	'codigo_med': 'List',
 	'nombre_med':'List',
 	'numero_lote' : 'List',
 	'fecha_elavorado': 'List',
@@ -197,7 +199,7 @@ def mostrar_medi_index(request):
 	
 	contexto = {
 	'object_list':queryset,
-	'codigo': 'List',
+	'codigo_med': 'List',
 	'nombre_med':'List',
 	'numero_lote' : 'List',
 	'fecha_elavorado': 'List',
@@ -234,25 +236,12 @@ def eliminar_medicamentos(request, pk):
 ######################################################################################	
 
 @login_required()
-def servicio(request):
-	form = ServForm(request.POST or None)
-
-	Context={
-
-	"form":form
-	}
-
-	if form.is_valid():
-		form_data = form.cleaned_data
-		codigo = form_data.get("codigo")
-		nombre_serv = form_data.get("nombre_serv")
-		tipo = form_data.get("tipo")
-		extencion_tlf = form_data.get("extencion_tlf")
-		asistente_serv = form_data.get("asistente_serv")
-
-		obj = servicios.objects.create(codigo=codigo, nombre_serv=nombre_serv,
-			tipo=tipo, extencion_tlf=extencion_tlf, asistente_serv=asistente_serv)
+def rg_servicios(request):	
+	if request.method =='POST':
+		form = ServiForm(request.POST)
+		if form.is_valid():
+			form.save()
+		return redirect('rg_servicios')
 	else:
-		print ("No Existe")
-
-	return render(request,"rg_servicios.html",Context)
+		form = ServiForm()
+	return render(request,'rg_servicios.html',{'form':form})

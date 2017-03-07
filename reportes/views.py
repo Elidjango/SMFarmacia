@@ -24,7 +24,6 @@ from reportlab.lib.pagesizes import A4, cm, letter
 from reportlab.lib import colors
 #finnnnnn
 
-from .forms import *
 from reportes.models import *
 from Registro.models import pacientes, medicamentos
 
@@ -98,7 +97,7 @@ class ReporteMedicamentosPDF(View):
         #Creamos una tupla de encabezados para neustra tabla
         encabezados = ('Codigo', 'Nombre del Medicamento', 'N° Lote', 'Elavorado', 'Vence', 'Cantidad')
         #Creamos una lista de tuplas que van a contener a las personas
-        detalles = [(xd.codigo, xd.nombre_med, xd.numero_lote, xd.fecha_elavorado, xd.fecha_vencimiento, xd.cantidad) for xd in medicamentos.objects.all()]
+        detalles = [(xd.codigo_med, xd.nombre_med, xd.numero_lote, xd.fecha_elavorado, xd.fecha_vencimiento, xd.cantidad) for xd in medicamentos.objects.all()]
         #Establecemos el tamaño de cada una de las columnas de la tabla
         detalle_orden = Table([encabezados] + detalles, colWidths=[2 * cm, 8 * cm,
          2 * cm, 3 * cm, 3 * cm, 2 * cm])

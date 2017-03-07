@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/fondo.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/fuente.css">
 	<link rel="stylesheet" href="/static/css/rg_pacientes.css">
-	<title>Pacientes</title>
+	<title>Servicios</title>
 </head>
 <body>
 	<header>
@@ -82,14 +82,14 @@
 		<form class="form-register" method="POST">{% csrf_token %}
 			<h1 class="form-titulo">REGISTRAR SERVICIO</h1>
 			<div class="contenedor-input">
-				<input maxlength="10" type="num" id="id_codigo" name="codigo" placeholder="Codigo" class="input-100" required>
+				<input maxlength="10" type="num" id="id_codigo_serv" name="codigo_serv" placeholder="Codigo" class="input-100" required>
 				<input maxlength="50" type="text" id="id_nombre_serv" name="nombre_servi" placeholder="Nombre De Servicio" class="input-48" required>
-            	<input maxlength="10" type="text" id="id_tipo" name="tipo" placeholder="Tipo De Servicio" class="input-48" required>
+            	<input maxlength="10" type="text" id="id_tipo2" name="tipo2" placeholder="Tipo De Servicio" class="input-48" required>
 
 				<input type="num" id="id_extencion_tlf" name="extencion_tlf" placeholder="Extención Telefonica" class="input-48" required>
 				<input type="Text" id="id_asistente_serv" name="asistente_serv" placeholder="Asistente Del Servicio" class="input-48" required>
             	
-            	<input type="submit" onclick='alert("guardado exitosamente")' value="Registrar" class="input-100">
+            	<input type="submit" value="Registrar" class="input-100">
 	        </div>
 	    </form>
 	{% endblock %}    

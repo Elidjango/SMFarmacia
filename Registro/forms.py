@@ -39,7 +39,7 @@ class MediForm(forms.ModelForm):
 		model = medicamentos
 			
 		fields = [
-			'codigo',
+			'codigo_med',
 			'nombre_med',
 			'numero_lote',
 			'fecha_elavorado',
@@ -49,7 +49,7 @@ class MediForm(forms.ModelForm):
 			'precio',
 		]
 		widgets = {
-		 	'codigo': forms.TextInput(attrs={'class':'form-control'}),
+		 	'codigo_med': forms.TextInput(attrs={'class':'form-control'}),
 		 	'nombre_med': forms.TextInput(attrs={'class': 'form-control'}),
 		 	'numero_lote': forms.TextInput(attrs={'class': 'form-control'}),
 		 	'fecha_elavorado': forms.TextInput(attrs={'class': 'form-control'}),
@@ -59,22 +59,22 @@ class MediForm(forms.ModelForm):
 		 	'precio': forms.NumberInput(attrs={'class': 'form-control'}),
 		}
 
-class ServForm(forms.ModelForm):
+class ServiForm(forms.ModelForm):
 	
 	class Meta:
 		model = servicios
-
+			
 		fields = [
-			'codigo',
+			'codigo_serv',
 			'nombre_serv',
-			'tipo',
+			'tipo2',
 			'extencion_tlf',
 			'asistente_serv',
 		]
 		widgets = {
-			'codigo': forms.NumberInput(attrs={'class':'form-control'}),
-			'nombre_serv': forms.TextInput(attrs={'class':'form-control'}),
-			'tipo': forms.TextInput(attrs={'class':'form-control'}),
-			'extencion_tlf': forms.NumberInput(attrs={'class':'form-control'}),
-			'asistente_serv': forms.TextInput(attrs={'class':'form-control'}),
+		 	'codigo_serv': forms.NumberInput(attrs={'class':'form-control'}),
+		 	'nombre_serv': forms.TextInput(attrs={'class': 'form-control'}),
+		 	'tipo2': forms.TextInput(attrs={'class': 'form-control'}),
+		 	'extencion_tlf': forms.NumberInput(attrs={'class': 'form-control'}),
+		 	'asistente_serv': forms.TextInput(attrs={'class': 'form-control'}),
 		}

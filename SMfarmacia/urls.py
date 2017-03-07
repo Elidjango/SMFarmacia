@@ -28,12 +28,10 @@ urlpatterns = [
     #sistema de autenticacion login
     url(r'^$', login, {'template_name': 'index.html', }, name="login"),
     url(r'^logout/$', logout, {'template_name': 'logout.html', }),
-    #cambiar el usuario y la contraseña
     url(r'^signup/$', 'home.views.signup', name='signup'),
     url(r'^signup/success/$', 'home.views.register_success'),
     #inicio del sistema
     url(r'^preloader/$', 'home.views.preloader', name='preloader'),
-    #url(r'^uploads/', 'reportes.views.upload_file', name="uploads"),
 
     url(r'^mision/$', 'home.views.mision', name='home'),
     url(r'^vision/$', 'home.views.vision', name='home'),
@@ -44,7 +42,7 @@ urlpatterns = [
     url(r'^pacientes/$', 'Registro.views.paciente'),
         url(r'^mtr_pacientes/$', 'Registro.views.mostrar_pacientes'),
         #url(r'^pacientes/(?P<pk>\d+)/editar/$',editarPaciUpdate.as_view(),name='editar'),
-        url(r'^pacientes/(?P<pk>\d+)/editar/$', views.UpdatePaciView.as_view(), name='editar_pacientes'),
+        #url(r'^pacientes/(?P<pk>\d+)/editar/$', views.UpdatePaciView.as_view(), name='editar_pacientes'),
 
     url(r'^medicamentos/$', 'Registro.views.medicamento'),
         url(r'^mtr_medicamentos/$', 'Registro.views.mostrar_medicamentos', name="mostrar_medicamentos"), 
@@ -52,7 +50,7 @@ urlpatterns = [
         url(r'^medicamentos/(?P<pk>\d+)/editar/$', views.UpdateMediView.as_view(), name='editar_medicamentos'),
         url(r'^medicamentos/(?P<pk>\d+)/eliminar/$', views.eliminar_medicamentos, name='eliminar_medicamentos'),
 
-    url(r'^servicios/$', 'Registro.views.servicio'),    
+    url(r'^servicios/$', 'Registro.views.rg_servicios', name='rg_servicios'),    
 
     #REPORTE IMPORTANTE APARTE
     url(r'^ayuda/$', 'reportes.views.ayuda'),

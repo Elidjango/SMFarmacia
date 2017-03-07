@@ -139,7 +139,9 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),
 # Don't forget to use absolute paths, not relative paths.
 )
 
+#PARA QUE MIS ARCHIVOS MEDIA O MIS MUSICA SE GUARDEN EN ELLA.
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # Redirect when login is correct.
 LOGIN_REDIRECT_URL = "/preloader"

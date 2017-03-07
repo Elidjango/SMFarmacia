@@ -23,7 +23,7 @@ class pacientes(models.Model):
 		return Dato
 
 class medicamentos(models.Model):
-	codigo = models.CharField(max_length=10, null=True)
+	codigo_med = models.CharField(max_length=10, null=True)
 	nombre_med = models.CharField(max_length=50, null=True)
 	numero_lote = models.CharField(max_length=20, null=True)
 	fecha_elavorado = models.DateField(null=True)
@@ -35,18 +35,18 @@ class medicamentos(models.Model):
 	actualizado_medicamentos = models.DateTimeField(auto_now_add=False, auto_now=True)
 
 	def __unicode__(self):
-		Dato2 ="%s %s"% (self.codigo, self.nombre_med)
+		Dato2 ="%s %s"% (self.codigo_med, self.nombre_med)
 		return Dato2
 
 class servicios(models.Model):
-	codigo = models.IntegerField(null=True)
+	codigo_serv = models.IntegerField(null=True)
 	nombre_serv = models.CharField(max_length=50, null=True)
-	tipo = models.CharField(max_length=50, null=True)
+	tipo2 = models.CharField(max_length=50, null=True)
 	extencion_tlf = models.IntegerField(null=True)
 	asistente_serv = models.CharField(max_length=50, null=True)
 	tiempo_registro_servicios = models.DateTimeField(auto_now_add=True, auto_now=False)
 	actualizado_servicios = models.DateTimeField(auto_now_add=False, auto_now=True)
 
 	def __unicode__(self):
-		Dato3 ="%i %s"% (self.codigo, self.nombre_serv)
+		Dato3 ="%i %s"% (self.codigo_serv, self.nombre_serv)
 		return Dato3		
