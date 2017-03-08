@@ -79,7 +79,7 @@
 	<div class="contenido">
 	<br>
    	{% block content %}			
-		<form class="form-register" method="POST">{% csrf_token %}
+		<form class="form-register" method="GET">{% csrf_token %}
 			<h1 class="form-titulo">REGISTRAR PACIENTES</h1>
 			<div class="contenedor-input">
 				<input maxlength="30" type="text" id="id_cedula" name="cedula" placeholder="Cedula" class="input-100" required>

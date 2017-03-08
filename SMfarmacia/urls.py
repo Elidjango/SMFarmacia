@@ -50,6 +50,9 @@ urlpatterns = [
 
     #-------------------------PACIENTES---------------------------------------------------------#
     url(r'^pacientes/$', 'Registro.views.paciente', name="rg_pacientes"),
+        url(r'^mtr_pacientes/$', 'Registro.views.mostrar_pacientes', name="mtr_pacientes"), 
+        url(r'^pacientes/(?P<pk>\d+)/editar/$', views.UpdatePaciView.as_view(), name='editar_paci'),
+        url(r'^pacientes/(?P<pk>\d+)/eliminar/$', views.eliminar_pacientes, name='eliminar_paci'),  
     #-------------------------------------------------------------------------------------------#
 
 

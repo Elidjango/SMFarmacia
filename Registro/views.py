@@ -31,9 +31,13 @@ from .models import *
 from .forms import *
 # Create your views here.
 
+
+
+#-----------------PACIENTES--------------------------------------------------------------#
+
 @login_required()
 def paciente(request):
-	form = PaciForm(request.GET or None)
+	form = PaciForm(request.POST or None)
 
 	Context={
 
@@ -59,11 +63,66 @@ def paciente(request):
 	else:
 		print ("No Existe")
 
-	return render(request,"rg_pacientes.html",Context)	
+	return render(request,"rg_pacientes.html",Context)
 
-#####################################################################################
-################################### MEDICAMENTOS ####################################
-#####################################################################################
+@login_required()
+def mostrar_pacientes(request):
+	queryset_list = pacientes.objects.all()
+	Page_reques_var = "page"
+	query = request.GET.get("q")
+	if query:
+			queryset_list = queryset_list.filter(
+				Q(cedula__icontains=query)|
+				Q(nombre_paci__icontains=query)|
+				Q(apellido_paci__icontains=query)
+				).distinct()
+	paginator = Paginator(queryset_list, 50)
+	Page_reques_var = "page"
+	page = request.GET.get(Page_reques_var)
+	try:
+		queryset = paginator.page(page)
+	except PageNotAnInteger:
+		queryset = paginator.page(1)
+	except EmptyPage:
+		queryset = paginator.page(paginator.num_pages)
+	
+	contexto = {
+	'object_list':queryset,
+	'cedula': 'List',
+	'nombre_paci':'List',
+	'apellido_paci' : 'List',
+	'cod_movil': 'List',
+	'movil': 'List',
+	'cod_tlf': 'List',
+	'tlf': 'List',
+	'direccion_paci': 'List',
+	'fech_naci': 'List',
+	'Page_reques_var': Page_reques_var
+	}
+	return render(request, 'mtr_pacientes.html', contexto)			
+
+class UpdatePaciView(UpdateView):
+
+	model = pacientes
+	template_name = 'edit_pacientes.html'
+	form_class = PaciForm
+	success_url = reverse_lazy('mtr_pacientes', args=(0, ))
+
+	def form_valid(self, form):
+		pacientes = form.instance
+		self.success_url = reverse_lazy('mtr_pacientes', args=(pacientes.pk, ))
+		return super().form_valid(form)	
+
+def eliminar_pacientes(request, pk):
+
+	paci = get_object_or_404(pacientes, pk=pk)
+	paci.delete()
+	return redirect('mtr_pacientes')	
+#----------------------------------------------------------------------------------------#
+
+
+
+#-----------------MEDICAMENTOS-----------------------------------------------------------#
 
 @login_required()
 def medicamento(request):
@@ -100,7 +159,7 @@ def mostrar_medicamentos(request):
 	query = request.GET.get("q")
 	if query:
 			queryset_list = queryset_list.filter(
-				Q(codigo__icontains=query)|
+				Q(codigo_med__icontains=query)|
 				Q(nombre_med__icontains=query)|
 				Q(numero_lote__icontains=query)
 				).distinct()
@@ -133,7 +192,7 @@ def mostrar_medi_index(request):
 	query = request.GET.get("q")
 	if query:
 			queryset_list = queryset_list.filter(
-				Q(codigo__icontains=query)|
+				Q(codigo_med__icontains=query)|
 				Q(nombre_med__icontains=query)|
 				Q(numero_lote__icontains=query)
 				).distinct()
@@ -177,7 +236,4 @@ def eliminar_medicamentos(request, pk):
 	medi = get_object_or_404(medicamentos, pk=pk)
 	medi.delete()
 	return redirect('mostrar_medicamentos')
-
-######################################################################################
-######################################################################################
-######################################################################################
+#----------------------------------------------------------------------------------------#

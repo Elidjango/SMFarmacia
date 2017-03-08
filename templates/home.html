@@ -50,11 +50,11 @@
 				</li>
 				<li class="submenu"><a href="#">Reportes<span class="icon-reportes"></span></a>
 				    <ul class="m4">
-						<li><a href="/reporte_medicamentos_pdf/" target="_blanck">Medicamentos</a></li>
 						<li><a href="/reporte_pacientes_pdf/" target="_blanck">Pacientes</a></li>
 						{% if user.is_superuser %}
 						<li><a href="#" target="_blanck">Veremos...</a></li>
 						{% endif %}
+						<li><a href="/reporte_medicamentos_pdf/" target="_blanck">Medicamentos</a></li>
 						<li><a href="/change_views/" target="_blanck">Solicitud.DAH</a></li>
 						<li><a href="#" target="_blanck">Inventarios</a></li>
 						<li><a href="#" target="_blanck">Salidas</a></li>
@@ -67,7 +67,7 @@
 				    {% if user.is_superuser %}
 						<li><a href="/signup/">Nuevos Usuarios</a></li>
 					{% endif %}	
-						<li><a href="/ayuda/">Manual de Usuarios</a></li>
+						<li><a href="#">Manual de Usuarios</a></li>
 					</ul>
 				</li>
 				<li><a href="/logout/">Logout<span class="icon-logout"></span></a></li>
