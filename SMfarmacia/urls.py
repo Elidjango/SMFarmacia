@@ -66,6 +66,10 @@ urlpatterns = [
 
 
     #-------------------------SERVICIOS---------------------------------------------------------#
+    url(r'^servicios/$', 'servicios.views.medicamento'),
+        url(r'^mtr_servicios/$', 'servicios.views.mostrar_servicios', name="mostrar_servicios"),
+        url(r'^servicios/(?P<pk>\d+)/editar/$', views.UpdateServiView.as_view(), name='editar_servicios'),
+        url(r'^servicios/(?P<pk>\d+)/eliminar/$', views.eliminar_servicios, name='eliminar_servicios'),
     #-------------------------------------------------------------------------------------------#
 
 
