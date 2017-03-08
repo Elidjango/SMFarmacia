@@ -140,4 +140,4 @@ def pdf_view(request):
     with open(r'C:\\Users\\Anonymous\\Documents\\SISTEMAS\\system\\original\\media\\documents\\SOLICITUD.pdf', 'rb') as pdf:
         response = HttpResponse(pdf.read(), content_type='application/pdf')
         pdf_name = "Pantilla_Necesaria.pdf"
-        return response    
+        return response

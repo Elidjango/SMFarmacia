@@ -59,60 +59,11 @@ def paciente(request):
 	else:
 		print ("No Existe")
 
-	return render(request,"rg_pacientes.html",Context)
-
-@login_required()
-def mostrar_pacientes(request):
-	queryset_list = pacientes.objects.all()
-	Page_reques_var = "page"
-	query = request.GET.get("q")
-	if query:
-			queryset_list = queryset_list.filter(
-				Q(cedula__icontains=query)|
-				Q(nombre_paci__icontains=query)|
-				Q(apellido_paci__icontains=query)
-				).distinct()
-	paginator = Paginator(queryset_list, 50)
-	Page_reques_var = "page"
-	page = request.GET.get(Page_reques_var)
-	try:
-		queryset = paginator.page(page)
-	except PageNotAnInteger:
-		queryset = paginator.page(1)
-	except EmptyPage:
-		queryset = paginator.page(paginator.num_pages)
-	
-	contexto = {
-	'object_list':queryset,
-	'cedula': 'List',
-	'nombre_paci':'List',
-	'apellido_paci' : 'List',
-	'cod_movil': 'List',
-	'movil': 'List',
-	'cod_tlf': 'List',
-	'tlf': 'List',
-	'direccion_paci': 'List',
-	'fech_naci': 'List',
-	'Page_reques_var': Page_reques_var
-	}
-	return render(request, 'mtr_pacientes.html', contexto)
-
-class UpdatePaciView(UpdateView):
-	"""Vista para editar eventos."""
-
-	model = pacientes
-	template_name = 'edit_pacientes.html'
-	form_class = PaciForm
-	success_url = reverse_lazy('mostrar_pacientes', args=(0, ))
-
-	def form_valid(self, form):
-		pacientes = form.instance
-		self.success_url = reverse_lazy('mostrar_pacientes', args=(pacientes.pk, ))
-		return super().form_valid(form)		
+	return render(request,"rg_pacientes.html",Context)	
 
 #####################################################################################
-######################################################################################
-######################################################################################
+################################### MEDICAMENTOS ####################################
+#####################################################################################
 
 @login_required()
 def medicamento(request):
@@ -172,7 +123,6 @@ def mostrar_medicamentos(request):
 	'fecha_vencimiento': 'List',
 	'tipo': 'List',
 	'cantidad': 'List',
-	#'precio': 'List',
 	'Page_reques_var': Page_reques_var
 	}
 	return render(request, 'mtr_medicamentos.html', contexto)
@@ -206,13 +156,11 @@ def mostrar_medi_index(request):
 	'fecha_vencimiento': 'List',
 	'tipo': 'List',
 	'cantidad': 'List',
-	#'precio': 'List',
 	'Page_reques_var': Page_reques_var
 	}
 	return render(request, 'mtr_med_index.html', contexto)
 
 class UpdateMediView(UpdateView):
-	"""Vista para editar eventos."""
 
 	model = medicamentos
 	template_name = 'edit_medicamentos.html'
@@ -225,7 +173,6 @@ class UpdateMediView(UpdateView):
 		return super().form_valid(form)	
 
 def eliminar_medicamentos(request, pk):
-	"""Vista para eliminar los eventos."""
 
 	medi = get_object_or_404(medicamentos, pk=pk)
 	medi.delete()
@@ -233,15 +180,4 @@ def eliminar_medicamentos(request, pk):
 
 ######################################################################################
 ######################################################################################
-######################################################################################	
-
-@login_required()
-def rg_servicios(request):	
-	if request.method =='POST':
-		form = ServiForm(request.POST)
-		if form.is_valid():
-			form.save()
-		return redirect('rg_servicios')
-	else:
-		form = ServiForm()
-	return render(request,'rg_servicios.html',{'form':form})
+######################################################################################

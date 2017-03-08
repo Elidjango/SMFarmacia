@@ -25,39 +25,56 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    #sistema de autenticacion login
-    url(r'^$', login, {'template_name': 'index.html', }, name="login"),
-    url(r'^logout/$', logout, {'template_name': 'logout.html', }),
-    url(r'^signup/$', 'home.views.signup', name='signup'),
-    url(r'^signup/success/$', 'home.views.register_success'),
-    #inicio del sistema
+
+
+    #------------------------FRONT INICIAL------------------------------------------------------#
+    url(r'^$', login, {'template_name': 'index.html', }, name="login_index"),
+    url(r'^mision/$', 'home.views.mision', name='Mision'),
+    url(r'^vision/$', 'home.views.vision', name='Vision'),
+    url(r'^quienes_somos/$', 'home.views.quienes_somos', name='Quienes_Somos'),
+    #-------------------------------------------------------------------------------------------#
+    
+
+    #------------------------PRELOADER----------------------------------------------------------#
     url(r'^preloader/$', 'home.views.preloader', name='preloader'),
+    #-------------------------------------------------------------------------------------------#
+    
 
-    url(r'^mision/$', 'home.views.mision', name='home'),
-    url(r'^vision/$', 'home.views.vision', name='home'),
-    url(r'^quienes_somos/$', 'home.views.quienes_somos', name='home'),
-
+    #------------------------FRONT SECUNDARIO---------------------------------------------------#
     url(r'^home/$', 'home.views.home', name='home'),
+    url(r'^logout/$', logout, {'template_name': 'logout.html', }, name="logout"),
+    url(r'^signup/$', 'home.views.signup', name='signup'),
+    url(r'^signup/success/$', 'home.views.register_success', name="success_signup"),
+    #-------------------------------------------------------------------------------------------#
 
-    url(r'^pacientes/$', 'Registro.views.paciente'),
-        url(r'^mtr_pacientes/$', 'Registro.views.mostrar_pacientes'),
-        #url(r'^pacientes/(?P<pk>\d+)/editar/$',editarPaciUpdate.as_view(),name='editar'),
-        #url(r'^pacientes/(?P<pk>\d+)/editar/$', views.UpdatePaciView.as_view(), name='editar_pacientes'),
 
+    #-------------------------PACIENTES---------------------------------------------------------#
+    url(r'^pacientes/$', 'Registro.views.paciente', name="rg_pacientes"),
+    #-------------------------------------------------------------------------------------------#
+
+
+    #-------------------------MEDICAMENTOS------------------------------------------------------#
     url(r'^medicamentos/$', 'Registro.views.medicamento'),
         url(r'^mtr_medicamentos/$', 'Registro.views.mostrar_medicamentos', name="mostrar_medicamentos"), 
         url(r'^medicinas_habiles/$', 'Registro.views.mostrar_medi_index', name="mostrar_medicamentos_index"),
         url(r'^medicamentos/(?P<pk>\d+)/editar/$', views.UpdateMediView.as_view(), name='editar_medicamentos'),
-        url(r'^medicamentos/(?P<pk>\d+)/eliminar/$', views.eliminar_medicamentos, name='eliminar_medicamentos'),
+        url(r'^medicamentos/(?P<pk>\d+)/eliminar/$', views.eliminar_medicamentos, name='eliminar_medicamentos'),  
+    #-------------------------------------------------------------------------------------------#
 
-    url(r'^servicios/$', 'Registro.views.rg_servicios', name='rg_servicios'),    
 
-    #REPORTE IMPORTANTE APARTE
+    #-------------------------SERVICIOS---------------------------------------------------------#
+    #-------------------------------------------------------------------------------------------#
+
+
+    #-------------------------MANUAL DE USUARIOS------------------------------------------------#
     url(r'^ayuda/$', 'reportes.views.ayuda'),
+    #-------------------------------------------------------------------------------------------#
 
+
+    #-------------------------REPORTE IMPORTANTE------------------------------------------------#
     url(r'^reporte_pacientes_pdf/$',login_required(ReportePacientesPDF.as_view())),
     url(r'^reporte_medicamentos_pdf/$',login_required(ReporteMedicamentosPDF.as_view())),
-
     url(r'^change_views/', 'reportes.views.pdf_view'),
+    #-------------------------------------------------------------------------------------------#
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

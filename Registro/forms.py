@@ -58,23 +58,3 @@ class MediForm(forms.ModelForm):
 		 	'cantidad': forms.NumberInput(attrs={'class': 'form-control'}),
 		 	'precio': forms.NumberInput(attrs={'class': 'form-control'}),
 		}
-
-class ServiForm(forms.ModelForm):
-	
-	class Meta:
-		model = servicios
-			
-		fields = [
-			'codigo_serv',
-			'nombre_serv',
-			'tipo2',
-			'extencion_tlf',
-			'asistente_serv',
-		]
-		widgets = {
-		 	'codigo_serv': forms.NumberInput(attrs={'class':'form-control'}),
-		 	'nombre_serv': forms.TextInput(attrs={'class': 'form-control'}),
-		 	'tipo2': forms.TextInput(attrs={'class': 'form-control'}),
-		 	'extencion_tlf': forms.NumberInput(attrs={'class': 'form-control'}),
-		 	'asistente_serv': forms.TextInput(attrs={'class': 'form-control'}),
-		}
