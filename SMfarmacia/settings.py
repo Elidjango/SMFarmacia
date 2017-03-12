@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'SMfarmacia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'SMfarmacia',
+        'NAME': 'SMfarmacia2',
         'USER': 'postgres',
         'PASSWORD': 'eliyenthon',
         'HOST': 'localhost',

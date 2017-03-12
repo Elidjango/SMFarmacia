@@ -6,55 +6,45 @@ from .models import *
 from django.contrib.auth.models import User
 
 class PaciForm(forms.ModelForm):
+
+	css_error_class = 'has-error'
 	
 	class Meta:
 		model = pacientes
-			
-		fields = [
-			'cedula',
-			'nombre_paci',
-			'apellido_paci',
-			'cod_movil',
-			'movil',
-			'cod_tlf',
-			'tlf',
-			'direccion_paci',
-			'fech_naci',
-		]
-		widgets = {
-		 	'cedula': forms.NumberInput(attrs={'class':'form-control'}),
-		 	'nombre_paci': forms.TextInput(attrs={'class': 'form-control'}),
-		 	'apellido_paci': forms.TextInput(attrs={'class': 'form-control'}),
-		 	'cod_movil': forms.NumberInput(attrs={'class': 'form-control'}),
-		 	'movil': forms.NumberInput(attrs={'class': 'form-control'}),
-		 	'cod_tlf': forms.NumberInput(attrs={'class': 'form-control'}),
-		 	'tlf': forms.NumberInput(attrs={'class': 'form-control'}),
-		 	'direccion_paci': forms.TextInput(attrs={'class': 'form-control' }),
-		 	'fech_naci': forms.DateInput(attrs={'class': 'form-control'}),
-		}
+
+		fields = ('cedula', 'nombre_paci', 'apellido_paci', 'cod_movil', 'movil',
+			'cod_tlf', 'tlf', 'direccion_paci', 'fech_naci')
+
+		def __init__(self, *args, **kwargs):
+			super().__init__(*args, **kwargs)
+			for field in self.fields:
+				self.fields[field].widget.attrs.update({'class':'form-control'})
 
 class MediForm(forms.ModelForm):
 	
+	css_error_class = 'has-error'
+	
 	class Meta:
 		model = medicamentos
-			
-		fields = [
-			'codigo_med',
-			'nombre_med',
-			'numero_lote',
-			'fecha_elavorado',
-			'fecha_vencimiento',
-			'tipo',
-			'cantidad',
-			'precio',
-		]
-		widgets = {
-		 	'codigo_med': forms.TextInput(attrs={'class':'form-control'}),
-		 	'nombre_med': forms.TextInput(attrs={'class': 'form-control'}),
-		 	'numero_lote': forms.TextInput(attrs={'class': 'form-control'}),
-		 	'fecha_elavorado': forms.TextInput(attrs={'class': 'form-control'}),
-		 	'fecha_vencimiento': forms.TextInput(attrs={'class': 'form-control'}),
-		 	'tipo': forms.TextInput(attrs={'class': 'form-control' }),
-		 	'cantidad': forms.NumberInput(attrs={'class': 'form-control'}),
-		 	'precio': forms.NumberInput(attrs={'class': 'form-control'}),
-		}
+
+		fields = ('codigo_med', 'nombre_med', 'numero_lote', 'fecha_elavorado', 'fecha_vencimiento',
+			'tipo', 'cantidad', 'precio')
+
+		def __init__(self, *args, **kwargs):
+			super().__init__(*args, **kwargs)
+			for field in self.fields:
+				self.fields[field].widget.attrs.update({'class':'form-control'})
+
+class ServiForm(forms.ModelForm):
+	
+	css_error_class = 'has-error'
+	
+	class Meta:
+		model = servicios
+
+		fields = ('codigo_serv', 'nombre_serv', 'tipo2', 'extencion_tlf', 'asistente_serv')
+
+		def __init__(self, *args, **kwargs):
+			super().__init__(*args, **kwargs)
+			for field in self.fields:
+				self.fields[field].widget.attrs.update({'class':'form-control'})

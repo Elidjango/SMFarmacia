@@ -19,6 +19,7 @@ from django.conf import settings
 from django.contrib.auth.views import login, logout
 from reportes.views import ReportePacientesPDF, ReporteMedicamentosPDF
 from Registro import views
+
 from django.contrib.auth.decorators import login_required
 
 from django.conf.urls.static import static
@@ -42,9 +43,9 @@ urlpatterns = [
 
     #------------------------FRONT SECUNDARIO---------------------------------------------------#
     url(r'^home/$', 'home.views.home', name='home'),
-    url(r'^logout/$', logout, {'template_name': 'logout.html', }, name="logout"),
-    url(r'^signup/$', 'home.views.signup', name='signup'),
-    url(r'^signup/success/$', 'home.views.register_success', name="success_signup"),
+        url(r'^logout/$', logout, {'template_name': 'logout.html', }, name="logout"),
+        url(r'^signup/$', 'home.views.signup', name='signup'),
+        url(r'^signup/success/$', 'home.views.register_success', name="success_signup"),
     #-------------------------------------------------------------------------------------------#
 
 
@@ -57,7 +58,7 @@ urlpatterns = [
 
 
     #-------------------------MEDICAMENTOS------------------------------------------------------#
-    url(r'^medicamentos/$', 'Registro.views.medicamento'),
+    url(r'^medicamentos/$', 'Registro.views.medicamento', name="rg_medicamentos"),
         url(r'^mtr_medicamentos/$', 'Registro.views.mostrar_medicamentos', name="mostrar_medicamentos"), 
         url(r'^medicinas_habiles/$', 'Registro.views.mostrar_medi_index', name="mostrar_medicamentos_index"),
         url(r'^medicamentos/(?P<pk>\d+)/editar/$', views.UpdateMediView.as_view(), name='editar_medicamentos'),
@@ -66,10 +67,8 @@ urlpatterns = [
 
 
     #-------------------------SERVICIOS---------------------------------------------------------#
-    url(r'^servicios/$', 'servicios.views.medicamento'),
-        url(r'^mtr_servicios/$', 'servicios.views.mostrar_servicios', name="mostrar_servicios"),
-        url(r'^servicios/(?P<pk>\d+)/editar/$', views.UpdateServiView.as_view(), name='editar_servicios'),
-        url(r'^servicios/(?P<pk>\d+)/eliminar/$', views.eliminar_servicios, name='eliminar_servicios'),
+    url(r'^servicios/$', 'Registro.views.servicio', name="rg_servicios"),
+        url(r'^mtr_servicios/$','Registro.views.mostrar_servicio', name='mostrar_servicio'),
     #-------------------------------------------------------------------------------------------#
 
 

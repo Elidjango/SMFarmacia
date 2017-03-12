@@ -35,7 +35,9 @@
                     <ul class="m2">
 						<li><a href="#">Inventario</a></li>
 						<li><a href="#">Despacho</a></li>
+						{% if user.is_superuser %}
 						<li><a href="#">Desincorporacion</a></li>
+						{% endif %}
 						<li><a href="#">Donaciones</a></li>
 						<li><a href="#">Intercambios</a></li>
 					</ul>
@@ -44,7 +46,7 @@
 				    <ul class="m3">
 						<li><a href="/mtr_pacientes/">Pacientes</a></li>
 						<li><a href="/mtr_medicamentos/">Medicamentos</a></li>
-						<li><a href="#">Servicios</a></li>
+						<li><a href="/mtr_servicios/">Servicios</a></li>
 						<li><a href="#">Archivos</a></li>
 						<li><a href="#">Instituciones</a></li>
 					</ul>
@@ -53,7 +55,7 @@
 				    <ul class="m4">
 						<li><a href="/reporte_pacientes_pdf/" target="_blanck">Pacientes</a></li>
 						{% if user.is_superuser %}
-						<li><a href="#" target="_blanck">Veremos...</a></li>
+						<li><a href="#" target="_blanck">S.D.M.P.P</a></li>
 						{% endif %}
 						<li><a href="/reporte_medicamentos_pdf/" target="_blanck">Medicamentos</a></li>
 						<li><a href="/change_views/" target="_blanck">Solicitud.DAH</a></li>
@@ -82,18 +84,18 @@
 		<form class="form-register" method="POST">{% csrf_token %}
 			<h1 class="form-titulo">REGISTRAR PACIENTES</h1>
 			<div class="contenedor-input">
-				<input maxlength="30" type="text" id="id_cedula" name="cedula" placeholder="Cedula" class="input-100" required>
-				<input maxlength="30" type="text" id="id_nombre_paci" name="nombre_paci" placeholder="Nombre" class="input-48" required>
-            	<input maxlength="30" type="text" id="id_apellido_paci" name="apellido_paci" placeholder="Apellido" class="input-48" required>
+				<input maxlength="30" type="text" id="id_cedula" name="cedula" placeholder="Cédula V-12678463 (*)" class="input-100" required>
+				<input maxlength="30" type="text" id="id_nombre_paci" name="nombre_paci" placeholder="Nombres (*)" class="input-48" required>
+            	<input maxlength="30" type="text" id="id_apellido_paci" name="apellido_paci" placeholder="Apellidos (*)" class="input-48" required>
 				
-				<input maxlength="15" type="num" id="id_cod_movil" name="cod_movil" placeholder="Codigo Movil" class="input-48" required>
-            	<input maxlength="15" type="num" id="id_movil" name="movil" placeholder="Numero Movil" class="input-48" required>
+				<input maxlength="15" type="num" id="id_cod_movil" name="cod_movil" placeholder="Codigo Movil (*)" class="input-48" required>
+            	<input maxlength="15" type="num" id="id_movil" name="movil" placeholder="Numero Movil (*)" class="input-48" required>
 				
-				<input maxlength="15" type="num" id="id_cod_tlf" name="cod_tlf" placeholder="Codigo Teléfono Hbt" class="input-48" required>
-            	<input maxlength="30" type="num" id="id_tlf" name="tlf" placeholder="Teléno Habitación" class="input-48" required>
+				<input maxlength="15" type="num" id="id_cod_tlf" name="cod_tlf" placeholder="Codigo Teléfono Hbt (*)" class="input-48" required>
+            	<input maxlength="30" type="num" id="id_tlf" name="tlf" placeholder="Teléno Habitación (*)" class="input-48" required>
 
-            	<input maxlength="500" type="text" id="id_direccion_paci" name="direccion_paci" placeholder="Direccion de Vivienda" class="input-48" required>
-            	<label for="fech_naci">Fecha De Nacimiento</label>
+            	<input maxlength="500" type="text" id="id_direccion_paci" name="direccion_paci" placeholder="Direccion de Vivienda (*)" class="input-48" required>
+            	<label for="fech_naci">Fecha De Nacimiento (*)</label>
             	<input style="margin-left: 229px; margin-top: -44px;" maxlength="20" type="date" class="input-48" id="id_fech_naci" name="fech_naci" placeholder="Fecha De Nacimiento" required>
             	<input type="submit" onclick='alert("guardado exitosamente")' value="Registrar" class="input-100">
 	        </div>

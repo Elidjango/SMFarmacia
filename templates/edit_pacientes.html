@@ -35,7 +35,9 @@
                     <ul class="m2">
 						<li><a href="#">Inventario</a></li>
 						<li><a href="#">Despacho</a></li>
+						{% if user.is_superuser %}
 						<li><a href="#">Desincorporacion</a></li>
+						{% endif %}
 						<li><a href="#">Donaciones</a></li>
 						<li><a href="#">Intercambios</a></li>
 					</ul>
@@ -44,7 +46,7 @@
 				    <ul class="m3">
 						<li><a href="/mtr_pacientes/">Pacientes</a></li>
 						<li><a href="/mtr_medicamentos/">Medicamentos</a></li>
-						<li><a href="#">Servicios</a></li>
+						<li><a href="/mtr_servicios/">Servicios</a></li>
 						<li><a href="#">Archivos</a></li>
 						<li><a href="#">Instituciones</a></li>
 					</ul>
@@ -53,7 +55,7 @@
 				    <ul class="m4">
 						<li><a href="/reporte_pacientes_pdf/" target="_blanck">Pacientes</a></li>
 						{% if user.is_superuser %}
-						<li><a href="#" target="_blanck">Veremos...</a></li>
+						<li><a href="#" target="_blanck">S.D.M.P.P</a></li>
 						{% endif %}
 						<li><a href="/reporte_medicamentos_pdf/" target="_blanck">Medicamentos</a></li>
 						<li><a href="/change_views/" target="_blanck">Solicitud.DAH</a></li>

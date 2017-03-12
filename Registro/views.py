@@ -237,3 +237,61 @@ def eliminar_medicamentos(request, pk):
 	medi.delete()
 	return redirect('mostrar_medicamentos')
 #----------------------------------------------------------------------------------------#
+
+
+#-----------------SERVICIOS--------------------------------------------------------------#
+
+@login_required()
+def servicio(request):
+	form = ServiForm(request.POST or None)
+
+	ctx = {
+		"form": form
+	}
+
+	if form.is_valid():
+		form_data = form.cleaned_data
+		codigo_serv = form_data.get("codigo_serv")
+		nombre_serv = form_data.get("nombre_serv")
+		tipo2 = form_data.get("tipo2")
+		extencion_tlf = form_data.get("extencion_tlf")
+		asistente_serv = form_data.get("asistente_serv")
+
+		obj = servicios.objects.create(codigo_serv=codigo_serv, nombre_serv=nombre_serv,
+			tipo2=tipo2, extencion_tlf=extencion_tlf, asistente_serv=asistente_serv)
+
+	return render(request, 'rg_servicios.html', ctx)
+
+@login_required()
+def mostrar_servicio(request):
+	queryset_list = servicios.objects.all()
+	Page_reques_var = "page"
+	query = request.GET.get("q")
+	if query:
+			queryset_list = queryset_list.filter(
+				Q(codigo_serv__icontains=query)|
+				Q(nombre_serv__icontains=query)|
+				Q(asistente_serv__icontains=query)
+				).distinct()
+	paginator = Paginator(queryset_list, 50)
+	Page_reques_var = "page"
+	page = request.GET.get(Page_reques_var)
+	try:
+		queryset = paginator.page(page)
+	except PageNotAnInteger:
+		queryset = paginator.page(1)
+	except EmptyPage:
+		queryset = paginator.page(paginator.num_pages)
+
+	ctx = {
+		'object_list': queryset,
+		'codigo_serv': 'List',
+		'nombre_serv': 'List',
+		'tipo2': 'List',
+		'extencion_tlf': 'List',
+		'asistente_serv': 'List',
+		'Page_reques_var': Page_reques_var
+	}
+
+	return render(request, 'mtr_servicios.html', ctx)
+#----------------------------------------------------------------------------------------#

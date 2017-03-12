@@ -82,19 +82,18 @@
 	<br>
    	{% block content %}			
 		<form class="form-register" method="POST">{% csrf_token %}
-			<h1 class="form-titulo">REGISTRAR MEDICAMENTOS</h1>
+			<h1 class="form-titulo">REGISTRO SERVICIOS</h1>
 			<div class="contenedor-input">
-				<input maxlength="10" type="text" id="id_codigo_med" name="codigo_med" placeholder="Codigo (*)" class="input-100" required>
-				<input maxlength="50" type="text" id="id_nombre_med" name="nombre_med" placeholder="Nombre (*)" class="input-48" required>
-            	<input maxlength="10" type="num" id="id_numero_lote" name="numero_lote" placeholder="Numero Lote (*)" class="input-48" required>
-
-				<input type="Text" id="id_fecha_elavorado" name="fecha_elavorado" placeholder="Fecha Elavoración (*)" class="input-48" required>
-				<input type="Text" id="id_fecha_vencimiento" name="fecha_vencimiento" placeholder="Fecha Vencimiento (*)" class="input-48" required>
-
-            	<input maxlength="15" type="text" id="id_tipo" name="tipo" placeholder="Tipo (*)" class="input-48" required>
-            	<input maxlength="30" type="num" id="id_cantidad" name="cantidad" placeholder="Cantidad (*)" class="input-48" required>
-            	<input type="num" id="id_precio" name="precio" placeholder="Precio (*)" class="input-100" required>
+				<input maxlength="30" type="text" id="id_codigo_serv" name="codigo_serv" placeholder="Codigo (*)" class="input-48" required>
+				
+				<input maxlength="30" type="text" id="id_nombre_serv" name="nombre_serv" placeholder="Nombre Del Servicio (*)" class="input-48" required>
             	
+            	<input maxlength="30" type="text" id="id_tipo2" name="tipo2" placeholder="Tipo De Servicio (*)" class="input-48" required>
+				
+				<input maxlength="15" type="num" id="id_extencion_tlf" name="extencion_tlf" placeholder="Extención Telefonica (*)" class="input-48" required>
+				
+				<input maxlength="30" type="text" id="id_asistente_serv" name="asistente_serv" placeholder="Asistente Del Servicio (*)" class="input-100" required>
+
             	<input type="submit" onclick='alert("guardado exitosamente")' value="Registrar" class="input-100">
 	        </div>
 	    </form>

@@ -43,12 +43,12 @@ class ReportePacientesPDF(View):
 
     def tabla(self,pdf,y):
         #Creamos una tupla de encabezados para neustra tabla
-        encabezados = ('Cedúla', 'Nombre', 'Apellido', 'Codigo', 'Movil', 'Dirección', 'Fecha/NCMT')
+        encabezados = ('Cedúla', 'Nombre', 'Apellido', 'CodMovil', 'Movil', 'Dirección', 'Fecha/NCMT')
         #Creamos una lista de tuplas que van a contener a las personas
         detalles = [(xd.cedula, xd.nombre_paci, xd.apellido_paci, xd.cod_movil, xd.movil, xd.direccion_paci, xd.fech_naci) for xd in pacientes.objects.all()]
         #Establecemos el tamaño de cada una de las columnas de la tabla
-        detalle_orden = Table([encabezados] + detalles, colWidths=[2 * cm, 3 * cm,
-         3 * cm, 2 * cm, 3 * cm, 4 * cm, 3 * cm])
+        detalle_orden = Table([encabezados] + detalles, colWidths=[3 * cm, 3 * cm,
+         3 * cm, 2 * cm, 2 * cm, 4 * cm, 3 * cm])
         #Aplicamos estilos a las celdas de la tabla
         detalle_orden.setStyle(TableStyle(
             [

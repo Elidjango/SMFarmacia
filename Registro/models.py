@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 class pacientes(models.Model):
-	cedula = models.IntegerField(primary_key=True)
+	cedula = models.CharField(max_length=10, null=True, blank=True, unique=True)
 	nombre_paci = models.CharField(max_length=50, null=True)
 	apellido_paci = models.CharField(max_length=50, null=True)
 	cod_movil = models.IntegerField()
@@ -16,10 +16,10 @@ class pacientes(models.Model):
 	direccion_paci = models.TextField(max_length=255, null=True)
 	fech_naci = models.DateField(null=True)
 	tiempo_registro_paciente = models.DateTimeField(auto_now_add=True, auto_now=False)
-	actualizado_paciente = models.DateTimeField(auto_now_add=False, auto_now=True)	
+	actualizado_paciente = models.DateTimeField(auto_now_add=False, auto_now=True)
 
 	def __unicode__(self):
-		Dato ="%i %s %s"% (self.cedula, self.nombre_paci, self.apellido_paci)
+		Dato ="%s %s %s"% (self.cedula, self.nombre_paci, self.apellido_paci)
 		return Dato
 
 class medicamentos(models.Model):
